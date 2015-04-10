@@ -1,6 +1,7 @@
 package assigment.james.mobsoft;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -72,6 +73,16 @@ public class LogHandler {
         return log;
     }
 
+    public void editLog(Log log){
+        database.update(
+            DB_Handler.TABLE_LOGS,
+            columns,
+            log.getID() + " = '",
+            log.getID()
+            );
+
+    }
+
     /**
      * Assembles the Log from the cursor
      * and returns the assembled log
@@ -121,5 +132,7 @@ public class LogHandler {
         cursor.close();
         return logs;
     }
+
+
 
 }

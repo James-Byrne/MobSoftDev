@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Archers-Journal</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Journal</string>
     <string name="action_settings">Settings</string>
 
     <string name="hint_Uname">Username</string>
@@ -24,4 +23,6 @@
     <string name="new_Log">New Log</string>
     <string name="add_photo">Add Photo</string>
     <string name="title">Title:  </string>
+    <string name="archeryIcon">Archery_Icon</string>
+    <string name="back">Move Back</string>
 </resources>

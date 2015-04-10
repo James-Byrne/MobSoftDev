@@ -61,22 +61,26 @@ public class Activity_Get_Log extends ActionBarActivity {
     /**
      * When the save button is pressed create a new log
      */
-    public void save(){
-        LogHandler logHandler = new LogHandler(this);
-        logHandler.open();
-        logHandler.createLog(
-                edTitle.getText().toString(),
-                edObj.getText().toString(),
-                edCon.getText().toString(),
-                edArr.getText().toString(),
-                edRev.getText().toString()
-        );
-        logHandler.close();
+    public void save() {
+        if (edTitle.getText().toString().equals("")) {
+            Toast toast = Toast.makeText(this, "Add Title", Toast.LENGTH_LONG);
+            toast.show();
+        } else {
+            LogHandler logHandler = new LogHandler(this);
+            logHandler.open();
+            logHandler.createLog(
+                    edTitle.getText().toString(),
+                    edObj.getText().toString(),
+                    edCon.getText().toString(),
+                    edArr.getText().toString(),
+                    edRev.getText().toString()
+            );
+            logHandler.close();
 
-        Toast toast = Toast.makeText(this, "Log Saved", Toast.LENGTH_SHORT);
-        toast.show();
+            Toast toast = Toast.makeText(this, "Log Saved", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
-
     /**
      * When the delete button is pressed delete the
      * current log
@@ -105,6 +109,10 @@ public class Activity_Get_Log extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
+            case R.id.action_back:
+                Intent intent = new Intent(this, Activity_List_Notes.class);
+                startActivity(intent);
+                return true;
             case R.id.action_attach_photo:
                 // take photo
                 return true;

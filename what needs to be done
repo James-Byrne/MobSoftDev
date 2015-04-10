@@ -6,9 +6,15 @@ What needs to be done
 - Connecting to the edit screen                         [X]
 - Setting the screen to material dark                   [X]
 - The save and delete buttons in the action bar         [X]
-- Create Data                                           [0]
-- Save Data                                             [0]
-- Delete Data                                           [0]
+- Create Data                                           [X]
+- Save Data                                             [X]
+- Delete Data                                           [X]
+- Give Data a title                                     [X]
+- Return a list of titles/ids for List                  [X]
+- Finish the editLog in LogHadler                       [0]
+- Add identifiable data to the listview                 [0]
+
+- Add a preview of the Data?                          
 
 - camera
 - server side functionality

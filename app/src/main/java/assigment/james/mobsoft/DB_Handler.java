@@ -6,14 +6,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 /**
  * Created by james on 09/04/15.
+ *
  */
 public class DB_Handler extends SQLiteOpenHelper {
 
 
     // General database variables
-    private SQLiteDatabase db;
+    private SQLiteDatabase database;
 
-    public static final String DATABASE_NAME = "logs.db";
+    public static final String DATABASE_NAME = "training_logs.db";
     public static final String TABLE_LOGS = "log";
     public static final String COLUMN_ID = "_id";
     public static final int DATABASE_VERSION = 1;
@@ -48,7 +49,7 @@ public class DB_Handler extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 
     }
 

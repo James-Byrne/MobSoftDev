@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".Activity_Get_Log" >
 
+    <item android:id="@+id/action_back"
+        android:title="@string/back"
+        android:orderInCategory="0"
+        app:showAsAction="ifRoom"
+        android:icon="@mipmap/ic_action_back"/>
+
     <item android:id="@+id/action_save"
         android:title="@string/save"
         android:orderInCategory="1"

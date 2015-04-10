@@ -1,6 +1,7 @@
 package assigment.james.mobsoft;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,9 +42,15 @@ public class Activity_List_Notes extends ActionBarActivity {
 
         // Get all logs the user has created
         final List<Log> values = logHandler.getAllLogs();
+        final ArrayList<String> titles = new ArrayList<>(values.size());
 
-        ArrayAdapter<Log> adapter = new ArrayAdapter<Log>(this,
-                android.R.layout.simple_list_item_1, values);
+        for(int i=0; i<values.size();i++){
+            titles.add(values.get(i).getTitle());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listview_rows, titles);
+
+        ListLogsAdapter listLogsAdapter = new ListLogsAdapter(this, values);
         listView.setAdapter(adapter);
 
 
@@ -53,7 +61,6 @@ public class Activity_List_Notes extends ActionBarActivity {
                 editLog(values.get(position));
             }
         });
-
         logHandler.close();
     }
 
@@ -82,13 +89,12 @@ public class Activity_List_Notes extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_new_event) {
-            newLog();
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_new_event:
+                newLog();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 }

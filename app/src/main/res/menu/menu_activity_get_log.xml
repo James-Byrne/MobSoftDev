@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".Activity_Get_Log" >
+
+    <item android:id="@+id/action_save"
+        android:title="@string/save"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"
+        android:icon="@mipmap/ic_action_save"/>
+
+    <item
+        android:id="@+id/action_delete"
+        android:title="@string/delete"
+        android:orderInCategory="2"
+        app:showAsAction="ifRoom"
+        android:icon="@mipmap/ic_action_cancel"/>
+
+    <item android:id="@+id/action_attach_photo"
+        android:title="@string/add_photo"
+        android:orderInCategory="3"
+        app:showAsAction="never"
+        android:icon="@mipmap/ic_action_new_picture"/>
+
+</menu>

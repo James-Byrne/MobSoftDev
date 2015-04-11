@@ -62,24 +62,35 @@ public class Activity_Get_Log extends ActionBarActivity {
      * When the save button is pressed create a new log
      */
     public void save() {
+        LogHandler logHandler = new LogHandler(this);
+        logHandler.open();
+
         if (edTitle.getText().toString().equals("")) {
             Toast toast = Toast.makeText(this, "Add Title", Toast.LENGTH_LONG);
             toast.show();
-        } else {
-            LogHandler logHandler = new LogHandler(this);
-            logHandler.open();
-            logHandler.createLog(
+        }
+        else if(logHandler.exists(log.getID())){
+            logHandler.editLog(log);
+            Toast toast = Toast.makeText(this, "Log Edited", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else {
+            log = logHandler.createLog(
                     edTitle.getText().toString(),
                     edObj.getText().toString(),
                     edCon.getText().toString(),
                     edArr.getText().toString(),
-                    edRev.getText().toString()
-            );
-            logHandler.close();
+                    edRev.getText().toString());
 
-            Toast toast = Toast.makeText(this, "Log Saved", Toast.LENGTH_SHORT);
-            toast.show();
+            if(logHandler.exists(log.getID())){
+                Toast toast = Toast.makeText(this, "Log Saved", Toast.LENGTH_SHORT);
+                toast.show();
+            }else {
+                Toast toast = Toast.makeText(this, "ERROR : Log Not Saved", Toast.LENGTH_LONG);
+                toast.show();
+            }
         }
+        logHandler.close();
     }
     /**
      * When the delete button is pressed delete the
@@ -89,10 +100,15 @@ public class Activity_Get_Log extends ActionBarActivity {
         LogHandler logHandler = new LogHandler(this);
         logHandler.open();
         logHandler.deleteLog(log);
-        logHandler.close();
 
-        Toast toast = Toast.makeText(this, "Log Deleted", Toast.LENGTH_SHORT);
-        toast.show();
+        if(!logHandler.exists(log.getID())){
+            Toast toast = Toast.makeText(this, "Log Deleted", Toast.LENGTH_SHORT);
+            toast.show();
+        }else {
+            Toast toast = Toast.makeText(this, "ERROR : Log Not Deleted", Toast.LENGTH_LONG);
+            toast.show();
+        }
+        logHandler.close();
 
         Intent intent = new Intent(this, Activity_List_Notes.class);
         startActivity(intent);

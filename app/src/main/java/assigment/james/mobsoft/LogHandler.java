@@ -73,14 +73,38 @@ public class LogHandler {
         return log;
     }
 
-    public void editLog(Log log){
+    public Boolean exists(Long id){
+
+        Cursor cursor = database.query(
+                DB_Handler.TABLE_LOGS,
+                columns,
+                DB_Handler.COLUMN_ID + " = " + id,
+                null,null,null,null);
+
+        Boolean r = cursor.getCount() > 0;
+        cursor.close();
+        return r;
+    }
+
+    public Boolean editLog(Log log){
+
+        String filter = " _id = " + log.getID();
+
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(DB_Handler.COLUMN_TITLE, log.getTitle());
+        contentValues.put(DB_Handler.COLUMN_OBJECTIVE, log.getObjective());
+        contentValues.put(DB_Handler.COLUMN_CONDITION, log.getCondition());
+        contentValues.put(DB_Handler.COLUMN_ARROWS_SHOT, log.getArr_shot());
+        contentValues.put(DB_Handler.COLUMN_REVIEW, log.getReview());
+
         database.update(
             DB_Handler.TABLE_LOGS,
-            columns,
-            log.getID() + " = '",
-            log.getID()
-            );
+            contentValues,
+            filter,
+            null);
 
+        return exists(log.getID());
     }
 
     /**
@@ -132,7 +156,5 @@ public class LogHandler {
         cursor.close();
         return logs;
     }
-
-
 
 }

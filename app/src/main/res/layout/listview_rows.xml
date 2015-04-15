@@ -6,5 +6,6 @@
     android:layout_height="50dp"
     android:layout_width="match_parent"
     android:textAppearance="?android:attr/textAppearanceLarge"
-    android:id="@+id/textView_List_Title" />
+    android:id="@+id/textView_List_Title"
+    android:gravity="center" />
 

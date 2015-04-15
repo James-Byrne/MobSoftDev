@@ -6,6 +6,7 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -30,18 +31,8 @@
             android:theme="@style/Base.Theme.AppCompat" >
         </activity>
         <activity
-            android:name=".Activity_Camera"
-            android:label="@string/app_activity_camera"
-            android:screenOrientation="landscape"
-            android:theme="@style/Base.Theme.AppCompat" >
-        </activity>
-        <activity
-            android:name=".Activity_Gallery"
-            android:label="@string/title_activity_activity__gallery" >
-        </activity>
-        <activity
             android:name=".Activity_Display_Image"
-            android:label="@string/title_activity_activity__display__image" >
+            android:label="@string/app_name" >
         </activity>
     </application>
 

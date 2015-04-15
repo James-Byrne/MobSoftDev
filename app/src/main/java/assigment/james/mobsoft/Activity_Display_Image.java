@@ -42,7 +42,7 @@ public class Activity_Display_Image extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_back) {
             Intent intent = new Intent(this, Activity_Get_Log.class);
-            //Log log = getIntent().getExtras();
+            intent.putExtra("Log", (Log)getIntent().getExtras().get("Log"));
             startActivity(intent);
             return true;
         }

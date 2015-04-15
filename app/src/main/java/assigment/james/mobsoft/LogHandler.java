@@ -164,6 +164,7 @@ public class LogHandler {
         log.setCondition(cursor.getString(3));
         log.setArr_shot(cursor.getString(4));
         log.setReview(cursor.getString(5));
+        log.setImage(cursor.getBlob(6));
         return log;
     }
 

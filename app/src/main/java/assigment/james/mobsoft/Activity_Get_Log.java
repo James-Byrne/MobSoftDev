@@ -37,6 +37,7 @@ public class Activity_Get_Log extends ActionBarActivity {
     EditText edRev;
 
     Log log;
+    Intent intent;
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int SELECT_PICTURE = 2;
@@ -55,6 +56,7 @@ public class Activity_Get_Log extends ActionBarActivity {
         edRev = (EditText)findViewById(R.id.editText_Rev);
 
         loadLog();
+
     }
 
     /**
@@ -62,7 +64,7 @@ public class Activity_Get_Log extends ActionBarActivity {
      * the log passed to this screen
      */
     public void loadLog(){
-        Intent intent = getIntent();
+        intent = getIntent();
         log = (Log)intent.getSerializableExtra("Log");
 
         edTitle.setText(log.getTitle());
@@ -73,7 +75,7 @@ public class Activity_Get_Log extends ActionBarActivity {
     }
 
     public void back() {
-        Intent intent = new Intent(this, Activity_List_Notes.class);
+        intent = new Intent(this, Activity_List_Notes.class);
         startActivity(intent);
     }
 
@@ -152,14 +154,14 @@ public class Activity_Get_Log extends ActionBarActivity {
         }
         logHandler.close();
 
-        Intent intent = new Intent(this, Activity_List_Notes.class);
+        intent = new Intent(this, Activity_List_Notes.class);
         startActivity(intent);
     }
 
     public void getPicture() {
-        Intent getPicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (getPicture.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(getPicture, REQUEST_IMAGE_CAPTURE);
+        intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
@@ -169,14 +171,15 @@ public class Activity_Get_Log extends ActionBarActivity {
             Toast toast = Toast.makeText(this, "No Images attached to Log", Toast.LENGTH_SHORT);
             toast.show();
         } else {
-            Intent intent = new Intent(this, Activity_Display_Image.class);
+            intent = new Intent(this, Activity_Display_Image.class);
             intent.putExtra("Image", log.getImage());
+            intent.putExtra("Log", log);
             startActivity(intent);
         }
     }
 
     public void openGallery() {
-        Intent intent = new Intent();
+        intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,

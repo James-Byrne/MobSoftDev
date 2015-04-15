@@ -11,12 +11,18 @@ What needs to be done
 - Delete Data                                           [X]
 - Give Data a title                                     [X]
 - Return a list of titles/ids for List                  [X]
-- Finish the editLog in LogHadler                       [0]
+
+- Add the Gallery function                              [X]
+- Add the Camera functionality                          [X]
+- Add a display added images activity                   [X]
+- Fix edit log layout for pre v14                       [X]
+
+
+- Finish the editing functionality                      [X]
 - Add identifiable data to the listview                 [0]
 
-- Add a preview of the Data?                          
+- COMMENT OUT THE WHOLE APPLICATION                     [0]
+- Clean up the application                              [0]
 
-- camera
-- server side functionality
-
-- error checking
+KNOWN Bugs
+- The objective and Condition editText boxes in the Activity_Get_logs activity switch text around when a log is saved or edited

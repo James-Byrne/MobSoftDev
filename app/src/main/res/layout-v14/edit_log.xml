@@ -17,6 +17,17 @@
         android:layout_alignStart="@+id/textView_Obj"
         android:layout_marginTop="15dp" />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_Title"
+        android:layout_alignLeft="@+id/editText_Obj"
+        android:layout_alignStart="@+id/editText_Obj"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/textView_Obj" />
+    
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,13 +44,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText_Obj"
         android:layout_alignBottom="@+id/textView_Obj"
-        android:layout_toRightOf="@+id/textView_Con"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView_Con"
         android:inputType="text"
         android:maxLines="1"
         android:gravity="bottom|left"
-        android:layout_below="@+id/editText_Title"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/editText_Title" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,11 +64,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText_Con"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView_Obj"
         android:inputType="text"
         android:maxLines="1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/editText_Obj"
         android:layout_toRightOf="@+id/textView_Obj"
         android:layout_toEndOf="@+id/textView_Obj" />
 
@@ -68,12 +77,10 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/editText_Arr"
-        android:maxLines="1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_below="@+id/editText_Con"
-        android:layout_toRightOf="@+id/textView_Con"
-        android:layout_toEndOf="@+id/textView_Con" />
+        android:layout_alignStart="@+id/editText_Con"
+        android:layout_alignEnd="@+id/editText_Con"
+        android:maxLines="1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,26 +96,23 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:id="@+id/editText_Rev"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/editText_Arr"
+        android:layout_alignParentBottom="true"
         android:text="@string/review"
         android:inputType="textMultiLine"
         android:gravity="top"
-        android:layout_below="@+id/editText_Arr"
+        android:layout_below="@+id/space" />
+
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_below="@+id/editText_Arr"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:id="@+id/space" />
 
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_Title"
-        android:layout_alignLeft="@+id/editText_Obj"
-        android:layout_alignStart="@+id/editText_Obj"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/textView_Obj" />
 
 </RelativeLayout>

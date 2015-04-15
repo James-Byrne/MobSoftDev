@@ -1,7 +1,6 @@
 package assigment.james.mobsoft;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,17 +24,20 @@ public class Activity_List_Notes extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_notes);
 
-        listView=(ListView)findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listView);
         // Populates the list
-        populateList();
-    }
+        if (!logHandler.existsAny()) {
 
+        } else {
+            populateList();
+        }
+    }
     /**
      * Populates the list shown on the first screen
      * with a list of all logs that the user has
      * created.
      */
-    public void populateList(){
+    public void populateList() {
         // Create an instance of LogHandler and open the
         // database for writing
         logHandler.open();
@@ -44,15 +46,12 @@ public class Activity_List_Notes extends ActionBarActivity {
         final List<Log> values = logHandler.getAllLogs();
         final ArrayList<String> titles = new ArrayList<>(values.size());
 
-        for(int i=0; i<values.size();i++){
+        for (int i = 0; i < values.size(); i++) {
             titles.add(values.get(i).getTitle());
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.listview_rows, titles);
-
-        ListLogsAdapter listLogsAdapter = new ListLogsAdapter(this, values);
         listView.setAdapter(adapter);
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -64,13 +63,13 @@ public class Activity_List_Notes extends ActionBarActivity {
         logHandler.close();
     }
 
-    public void editLog(Log log){
+    public void editLog(Log log) {
         Intent intent = new Intent(this, Activity_Get_Log.class);
         intent.putExtra("Log", log);
         startActivity(intent);
     }
 
-    public void newLog(){
+    public void newLog() {
         Intent intent = new Intent(this, Activity_Get_Log.class);
         Log log = new Log();
         intent.putExtra("Log", log);
@@ -79,20 +78,18 @@ public class Activity_List_Notes extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity__list__notes, menu);
+        // Inflate the menu; this adds items to the
+        // action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_activity_list_notes, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_new_event:
                 newLog();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

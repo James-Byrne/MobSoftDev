@@ -1,5 +1,6 @@
 package assigment.james.mobsoft;
 
+import android.graphics.Bitmap;
 import android.text.format.Time;
 
 import java.io.Serializable;
@@ -20,17 +21,21 @@ public class Log implements Serializable{
      * athletes logs. This will hopefully be replaced by
      * an auto building tool (LogBuilder)
      */
+    private long ID;
     private String title="";
     private String arr_shot ="";
-    private String location ="";
     private String objective ="";
     private String condition ="";
     private String review ="";
-    private long ID;
+    private byte [] image;
 
     /**
      * SETTERS
      */
+
+    public void setImage(byte [] image){
+        this.image = image;
+    }
 
     public void setTitle(String title ){
         this.title = title;
@@ -42,10 +47,6 @@ public class Log implements Serializable{
 
     public void setCondition(String condition) {
         this.condition = condition;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public void setObjective(String objective) {
@@ -64,6 +65,10 @@ public class Log implements Serializable{
      * GETTERS
      */
 
+    public byte [] getImage() {
+        return image;
+    }
+
     public String getTitle(){
         return title;
     }
@@ -74,10 +79,6 @@ public class Log implements Serializable{
 
     public String getCondition() {
         return condition;
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     public String getObjective() {

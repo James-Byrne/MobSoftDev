@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".Activity_Display_Image">
+
+    <item android:id="@+id/action_back"
+        android:title="@string/back"
+        android:orderInCategory="0"
+        app:showAsAction="always"
+        android:icon="@mipmap/ic_action_back"/>
+
+</menu>

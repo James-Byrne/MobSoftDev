@@ -25,4 +25,17 @@
     <string name="title">Title:  </string>
     <string name="archeryIcon">Archery_Icon</string>
     <string name="back">Move Back</string>
+    <string name="title_activity_camera" />
+    <string name="capturePhoto">Capture Photo</string>
+    <string name="app_activity_camera">Camera</string>
+    <string name="title_activity_activity__camera">Activity_Camera</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="JournalAppImage">JournalAppImage</string>
+    <string name="add_video">Add Video</string>
+    <string name="title_activity_activity__gallery">Activity_Gallery</string>
+    <string name="title_activity_activity__display__image">Activity_Display_Image</string>
+    <string name="display_image">Show Images</string>
+    <string name="open_gallery">Open Gallery</string>
+
 </resources>

@@ -2,15 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="assigment.james.mobsoft" >
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:theme="@style/Base.Theme.AppCompat"
             android:name=".Activity_List_Notes"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/Base.Theme.AppCompat" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,12 +25,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/Base.Theme.AppCompat"
             android:name=".Activity_Get_Log"
-            android:label="@string/title_activity_get_log" >
+            android:label="@string/title_activity_get_log"
+            android:theme="@style/Base.Theme.AppCompat" >
         </activity>
-
-
+        <activity
+            android:name=".Activity_Camera"
+            android:label="@string/app_activity_camera"
+            android:screenOrientation="landscape"
+            android:theme="@style/Base.Theme.AppCompat" >
+        </activity>
+        <activity
+            android:name=".Activity_Gallery"
+            android:label="@string/title_activity_activity__gallery" >
+        </activity>
+        <activity
+            android:name=".Activity_Display_Image"
+            android:label="@string/title_activity_activity__display__image" >
+        </activity>
     </application>
 
 </manifest>

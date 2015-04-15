@@ -1,5 +1,6 @@
 package assigment.james.mobsoft;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 /**
  * Created by james on 09/04/15.
@@ -31,7 +34,9 @@ public class LogHandler {
             DB_Handler.COLUMN_CONDITION,
             DB_Handler.COLUMN_OBJECTIVE,
             DB_Handler.COLUMN_ARROWS_SHOT,
-            DB_Handler.COLUMN_REVIEW };
+            DB_Handler.COLUMN_REVIEW,
+            DB_Handler.COLUMN_IMAGE
+    };
 
     public LogHandler(Context context){
         dbHelper = new DB_Handler(context);
@@ -45,15 +50,7 @@ public class LogHandler {
         database.close();
     }
 
-    public Log createLog(String title, String obj, String con, String arr, String rev){
-
-        ContentValues values = new ContentValues();
-        values.put(DB_Handler.COLUMN_TITLE, title);
-        values.put(DB_Handler.COLUMN_OBJECTIVE, obj);
-        values.put(DB_Handler.COLUMN_CONDITION, con);
-        values.put(DB_Handler.COLUMN_ARROWS_SHOT, arr);
-        values.put(DB_Handler.COLUMN_REVIEW, rev);
-
+    public Log insert(ContentValues values){
         long insertID = database.insert(DB_Handler.TABLE_LOGS, null, values);
 
         // Gets the Log with the above ID
@@ -73,46 +70,90 @@ public class LogHandler {
         return log;
     }
 
-    public Boolean exists(Long id){
+    public Boolean update(ContentValues values, String filter, long id ){
+        database.beginTransaction();
+        try {
+            database.update(
+                    DB_Handler.TABLE_LOGS,
+                    values,
+                    filter + id,
+                    null);
+            database.setTransactionSuccessful();
 
+        } finally {
+            database.endTransaction();
+        }
+        return exists(id);
+    }
+
+    public Log createLog(String title, String obj, String con, String arr, String rev, byte[] img){
+
+        ContentValues values = new ContentValues();
+        values.put(DB_Handler.COLUMN_TITLE, title);
+        values.put(DB_Handler.COLUMN_OBJECTIVE, obj);
+        values.put(DB_Handler.COLUMN_CONDITION, con);
+        values.put(DB_Handler.COLUMN_ARROWS_SHOT, arr);
+        values.put(DB_Handler.COLUMN_REVIEW, rev);
+        values.put(DB_Handler.COLUMN_IMAGE, img);
+
+        return insert(values);
+    }
+
+    public Log createLog(String title, String obj, String con, String arr, String rev){
+
+        ContentValues values = new ContentValues();
+        values.put(DB_Handler.COLUMN_TITLE, title);
+        values.put(DB_Handler.COLUMN_OBJECTIVE, obj);
+        values.put(DB_Handler.COLUMN_CONDITION, con);
+        values.put(DB_Handler.COLUMN_ARROWS_SHOT, arr);
+        values.put(DB_Handler.COLUMN_REVIEW, rev);
+
+        return insert(values);
+    }
+
+    public Boolean exists(Long id){
         Cursor cursor = database.query(
                 DB_Handler.TABLE_LOGS,
                 columns,
                 DB_Handler.COLUMN_ID + " = " + id,
                 null,null,null,null);
 
-        Boolean r = cursor.getCount() > 0;
+        Boolean result = cursor.getCount() > 0;
         cursor.close();
-        return r;
+        return result;
     }
 
-    public Boolean editLog(Log log){
+    public Boolean existsAny() {
+        open();
+        Cursor cursor = database.query(
+                DB_Handler.TABLE_LOGS,
+                columns,
+                null, null, null, null, null);
 
-        String filter = " _id = " + log.getID();
+        Boolean result = cursor.getCount() > 0;
+        cursor.close();
+        close();
+        return result;
+    }
 
-        ContentValues contentValues = new ContentValues();
+    public Boolean editLog(long id, String title, String obj, String con, String arr, String rev, byte[] img, String filter){
 
-        contentValues.put(DB_Handler.COLUMN_TITLE, log.getTitle());
-        contentValues.put(DB_Handler.COLUMN_OBJECTIVE, log.getObjective());
-        contentValues.put(DB_Handler.COLUMN_CONDITION, log.getCondition());
-        contentValues.put(DB_Handler.COLUMN_ARROWS_SHOT, log.getArr_shot());
-        contentValues.put(DB_Handler.COLUMN_REVIEW, log.getReview());
 
-        database.update(
-            DB_Handler.TABLE_LOGS,
-            contentValues,
-            filter,
-            null);
+        ContentValues values = new ContentValues();
+        values.put(DB_Handler.COLUMN_TITLE, title);
+        values.put(DB_Handler.COLUMN_OBJECTIVE, obj);
+        values.put(DB_Handler.COLUMN_CONDITION, con);
+        values.put(DB_Handler.COLUMN_ARROWS_SHOT, arr);
+        values.put(DB_Handler.COLUMN_REVIEW, rev);
+        values.put(DB_Handler.COLUMN_IMAGE, img);
 
-        return exists(log.getID());
+        return update(values, filter, id);
     }
 
     /**
      * Assembles the Log from the cursor
      * and returns the assembled log
      *
-     * @param cursor
-     * @return
      */
     public Log assembleLog(Cursor cursor){
 
@@ -156,5 +197,7 @@ public class LogHandler {
         cursor.close();
         return logs;
     }
+
+
 
 }
